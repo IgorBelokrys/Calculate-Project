@@ -1,0 +1,65 @@
+/* Normalize.css */
+@import url("https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css");
+
+body {
+  background-color: #ffe3d6;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  padding: 0 40px;
+}
+
+.calculate {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 80%;
+  min-height: 300px;
+  width: 40%;
+  min-width: 300px;
+  background-color: #000000;
+  border-radius: 50px;
+  box-shadow: 8px 8px 8px rgba(0, 1, 3, 0.4), -8px -8px 8px rgba(0, 0, 0, 0.4);
+  padding: 10px 0;
+}
+
+.buttons {
+  box-sizing: border-box;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+  gap: 5px;
+  justify-items: center;
+  align-items: center;
+  width: 80%;
+  margin-top: 80px;
+  height: 100%;
+}
+
+.buttons button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(116, 113, 110, 0.5);
+  color: #ffffff;
+  border: none;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  cursor: pointer;
+}
+
+.buttons .orange {
+  background-color: #ff9e2e;
+}
+
+.buttons .light-gray {
+  background-color: #706969;
+}
+
+.visual img {
+  height: auto;
+  filter: invert(100%) brightness(100%) grayscale(100%);
+}
