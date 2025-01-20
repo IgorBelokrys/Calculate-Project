@@ -7,7 +7,6 @@ body {
   justify-content: center;
   align-items: center;
   height: 100vh;
- 
 }
 
 .calculate {
@@ -34,10 +33,10 @@ body {
 }
 
 .buttons button {
+  box-sizing: border-box;
   display: flex;
   justify-content: center;
   align-items: center;
-
   background-color: rgba(116, 113, 110, 0.5);
   color: #ffffff;
   border: none;
@@ -55,9 +54,30 @@ body {
   background-color: #706969;
 }
 
+.delete img {
+  margin-right: 5px;
+  filter: invert(100%) brightness(100%) grayscale(100%);
+}
+
 .visual img {
   height: auto;
   filter: invert(100%) brightness(100%) grayscale(100%);
+}
+
+.div-interface {
+  background-color: #ffe3d6;
+  height: 65px;
+}
+
+@media (max-width: 300px) {
+  .delete img {
+    margin-right: 2px;
+    width: 23px;
+  }
+
+  .visual img {
+    width: 45px;
+  }
 }
 
 @media (min-width: 300px) {
@@ -67,7 +87,16 @@ body {
 
   .calculate {
     min-width: 310px;
-    min-height: 560px;
+    min-height: 540px;
+  }
+
+  .delete img {
+    margin-right: 2px;
+    width: 36px;
+  }
+
+  .visual img {
+    width: 88px;
   }
 }
 
@@ -78,7 +107,16 @@ body {
 
   .calculate {
     min-width: 340px;
-    min-height: 600px;
+    min-height: 590px;
+  }
+
+  .delete img {
+    margin-right: 3px;
+    width: 39px;
+  }
+
+  .visual img {
+    width: 91px;
   }
 }
 
@@ -89,7 +127,16 @@ body {
 
   .calculate {
     min-width: 360px;
-    min-height: 90vh;
+    min-height: 610px;
+  }
+
+  .delete img {
+    margin-right: 5px;
+    width: 42px;
+  }
+
+  .visual img {
+    width: 94px;
   }
 }
 
@@ -100,10 +147,18 @@ body {
 
   .calculate {
     min-width: 380px;
-    min-height: 90vh;
+    min-height: 640px;
+  }
+
+  .delete img {
+    margin-right: 5px;
+    width: 45px;
+  }
+
+  .visual img {
+    width: 97px;
   }
 }
-
 
 @media (min-width: 1200px) {
   .buttons button {
@@ -112,6 +167,37 @@ body {
 
   .calculate {
     min-width: 420px;
-    min-height: 70vh;
+    min-height: 700px;
+  }
+
+  .delete img {
+    margin-right: 5px;
+    width: 48px;
+  }
+
+  .visual img {
+    width: 100px;
+  }
+}
+
+@media (max-height: 650px) {
+  .calculate {
+    min-height: 80vh;
+    overflow: hidden;
+  }
+
+  .buttons {
+    max-height: calc(80vh - 100px);
+    overflow-y: auto;
+    scrollbar-color: #ff9e2e;
+  }
+
+  .buttons::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  .buttons::-webkit-scrollbar-thumb {
+    background-color: #ff9e2e;
+    border-radius: 10px;
   }
 }
