@@ -45,7 +45,7 @@ buttons.forEach((elem) => {
 
       operation = clickButton.textContent.trim();
 
-      interfaceSecond.textContent = `${previousNumber} ${operation}`;
+      interfaceSecond.textContent = `${previousNumber} ${operation}  `;
 
       interfaceFirst.textContent = "";
 
@@ -80,7 +80,7 @@ buttons.forEach((elem) => {
       interfaceFirst.textContent = result;
       interfaceSecond.textContent = `${previousNumber} ${operation} ${currentNumber} ${
         document.querySelector(".equals").textContent
-      }`;
+      } `;
       previousNumber = "";
       currentNumber = "";
       operation = "";
