@@ -2,12 +2,21 @@
 
 const interfaceFirst = document.querySelector(".interface-first");
 const interfaceSecond = document.querySelector(".interface-second");
+const interfaceWrap = document.querySelector(".interface-wrap");
 
 const buttons = document.querySelectorAll(".buttons button");
 
 let currentNumber = "";
 let previousNumber = "";
 let operation = "";
+
+function updateOverflow() {
+  if (interfaceFirst.scrollWidth >= interfaceWrap.offsetWidth) {
+    interfaceFirst.style.overflowX = "auto";
+  } else {
+    interfaceFirst.style.overflowX = "visible";
+  }
+}
 
 buttons.forEach((elem) => {
   elem.addEventListener("click", function (event) {
@@ -46,6 +55,7 @@ buttons.forEach((elem) => {
       operation = clickButton.textContent.trim();
 
       interfaceSecond.textContent = `${previousNumber} ${operation}  `;
+      updateOverflow();
 
       interfaceFirst.textContent = "";
 
@@ -78,6 +88,7 @@ buttons.forEach((elem) => {
       }
       console.log("Результат:", result);
       interfaceFirst.textContent = result;
+
       interfaceSecond.textContent = `${previousNumber} ${operation} ${currentNumber} ${
         document.querySelector(".equals").textContent
       } `;
