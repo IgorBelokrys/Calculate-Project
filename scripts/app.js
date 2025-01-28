@@ -13,6 +13,7 @@ let operation = "";
 function updateOverflow() {
   if (interfaceFirst.scrollWidth >= interfaceWrap.offsetWidth) {
     interfaceFirst.style.overflowX = "auto";
+    interfaceSecond.style.width = "0";
   } else {
     interfaceFirst.style.overflowX = "visible";
   }
@@ -37,8 +38,9 @@ buttons.forEach((elem) => {
       return;
     }
     const buttonText = clickButton.textContent.trim();
-
+    updateOverflow();
     interfaceFirst.textContent += buttonText;
+    updateOverflow();
 
     if (
       clickButton.classList.contains("division") ||
@@ -55,7 +57,6 @@ buttons.forEach((elem) => {
       operation = clickButton.textContent.trim();
 
       interfaceSecond.textContent = `${previousNumber} ${operation}  `;
-      updateOverflow();
 
       interfaceFirst.textContent = "";
 

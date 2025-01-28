@@ -32,17 +32,26 @@ body {
   justify-content: flex-end;
   background-color: none;
   color: #ffffff;
+}
+
+.interface-first {
+  background-color: #0d03cc;
+  flex-grow: 0;
   overflow-x: auto;
   white-space: nowrap;
   scrollbar-width: none;
 }
 
-.interface-first {
-  flex-grow: 0;
+.interface-second {
+  background-color: #b604b6;
+  flex-grow: 1;
+  overflow-x: auto;
+  white-space: nowrap;
+  scrollbar-width: none;
 }
 
-.interface-second {
-  flex-grow: 1;
+.interface-history {
+  background-color: #1b8c04;
 }
 
 .buttons {
@@ -90,6 +99,14 @@ body {
 }
 
 @media (max-width: 300px) {
+  .calculate {
+    width: 200px;
+  }
+
+  .buttons button {
+    font-size: 15px;
+  }
+
   .delete img {
     margin-right: 2px;
     width: 23px;
@@ -102,12 +119,39 @@ body {
   .div-interface {
     font-size: 25px;
     padding: 4px;
-    margin-top: 70px;
+    /* margin-top: 70px; */
     height: 30px;
   }
 }
 
 @media (min-width: 300px) {
+  .buttons button {
+    font-size: 25px;
+  }
+
+  .calculate {
+    width: 290px;
+    min-height: 540px;
+  }
+
+  .delete img {
+    margin-right: 2px;
+    width: 36px;
+  }
+
+  .visual img {
+    width: 88px;
+  }
+
+  .div-interface {
+    font-size: 35px;
+    padding: 6px;
+    /* margin-top: 90px; */
+    height: 40px;
+  }
+}
+
+@media (min-width: 320px) {
   .buttons button {
     font-size: 26px;
   }
@@ -129,7 +173,7 @@ body {
   .div-interface {
     font-size: 35px;
     padding: 6px;
-    margin-top: 90px;
+    /* margin-top: 90px; */
     height: 40px;
   }
 }
@@ -253,9 +297,5 @@ body {
   .buttons::-webkit-scrollbar-thumb {
     background-color: #ff9e2e;
     border-radius: 10px;
-  }
-
-  .div-interface {
-    margin-top: 5%;
   }
 }
