@@ -3,6 +3,7 @@
 const interfaceFirst = document.querySelector(".interface-first");
 const interfaceSecond = document.querySelector(".interface-second");
 const interfaceWrap = document.querySelector(".interface-wrap");
+const interfaceHistory = document.querySelector(".interface-history");
 
 const buttons = document.querySelectorAll(".buttons button");
 
@@ -26,6 +27,7 @@ buttons.forEach((elem) => {
     if (clickButton.classList.contains("reset")) {
       interfaceFirst.textContent = "";
       interfaceSecond.textContent = "";
+      interfaceHistory.textContent = "";
       currentNumber = "";
       previousNumber = "";
       operation = "";
@@ -37,7 +39,7 @@ buttons.forEach((elem) => {
       }
       return;
     }
-    const buttonText = clickButton.textContent.trim();
+    const buttonText = clickButton.textContent;
     updateOverflow();
     interfaceFirst.textContent += buttonText;
     updateOverflow();
@@ -46,7 +48,8 @@ buttons.forEach((elem) => {
       clickButton.classList.contains("division") ||
       clickButton.classList.contains("multiplication") ||
       clickButton.classList.contains("subtract") ||
-      clickButton.classList.contains("add")
+      clickButton.classList.contains("add") ||
+      clickButton.classList.contains("procent")
     ) {
       if (previousNumber === "") {
         previousNumber = Number(
@@ -54,7 +57,7 @@ buttons.forEach((elem) => {
         );
       }
 
-      operation = clickButton.textContent.trim();
+      operation = clickButton.textContent;
 
       interfaceSecond.textContent = `${previousNumber} ${operation}  `;
 
@@ -84,15 +87,21 @@ buttons.forEach((elem) => {
         case "+":
           result = previousNumber + currentNumber;
           break;
+        case "%":
+          if (currentNumber === "") {
+            currentNumber = Number(
+              interfaceFirst.textContent.replace(",", ".")
+            );
+          }
+          result = (currentNumber * previousNumber) / 100;
         default:
           result = currentNumber;
       }
       console.log("Результат:", result);
       interfaceFirst.textContent = result;
 
-      interfaceSecond.textContent = `${previousNumber} ${operation} ${currentNumber} ${
-        document.querySelector(".equals").textContent
-      } `;
+      interfaceHistory.textContent = `${previousNumber} ${operation} ${currentNumber}`;
+      interfaceSecond.textContent = "";
       previousNumber = "";
       currentNumber = "";
       operation = "";

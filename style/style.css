@@ -23,6 +23,7 @@ body {
 .interface-wrap {
   display: flex;
   box-sizing: border-box;
+  margin-top: 5px;
 }
 
 .div-interface {
@@ -35,7 +36,6 @@ body {
 }
 
 .interface-first {
-  background-color: #0d03cc;
   flex-grow: 0;
   overflow-x: auto;
   white-space: nowrap;
@@ -43,15 +43,10 @@ body {
 }
 
 .interface-second {
-  background-color: #b604b6;
   flex-grow: 1;
   overflow-x: auto;
   white-space: nowrap;
   scrollbar-width: none;
-}
-
-.interface-history {
-  background-color: #1b8c04;
 }
 
 .buttons {
