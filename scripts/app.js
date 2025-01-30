@@ -7,8 +7,8 @@ const interfaceHistory = document.querySelector(".interface-history");
 
 const buttons = document.querySelectorAll(".buttons button");
 
-let currentNumber = "";
 let previousNumber = "";
+let currentNumber = "";
 let operation = "";
 
 function updateOverflow() {
@@ -17,6 +17,24 @@ function updateOverflow() {
     interfaceSecond.style.width = "0";
   } else {
     interfaceFirst.style.overflowX = "visible";
+  }
+}
+
+function updateNumber() {
+  if (
+    interfaceHistory.scrollWidth >= interfaceWrap.offsetWidth ||
+    interfaceFirst.scrollWidth >= interfaceWrap.offsetWidth
+  ) {
+    let fontSizeFirst = parseFloat(
+      window.getComputedStyle(interfaceFirst).fontSize
+    );
+    let fontSizeHistory = parseFloat(
+      window.getComputedStyle(interfaceHistory).fontSize
+    );
+    let res = (interfaceFirst.style.fontSize = `${fontSizeFirst * 0.5}px`);
+    let res2 = (interfaceHistory.style.fontSize = `${fontSizeHistory * 0.3}px`);
+    console.log(res);
+    console.log(res2);
   }
 }
 
@@ -31,18 +49,30 @@ buttons.forEach((elem) => {
       currentNumber = "";
       previousNumber = "";
       operation = "";
+      const divInterface = document.querySelector(".div-interface");
+      divInterface.style.fontSize = "";
+      interfaceFirst.style.fontSize = "";
+
       return;
     }
     if (clickButton.classList.contains("delete")) {
-      if (interfaceFirst.textContent.length > 0) {
-        interfaceFirst.textContent = interfaceFirst.textContent.slice(0, -1);
-      }
+      currentNumber = currentNumber.slice(0, -1);
+      interfaceFirst.textContent =
+        Number(currentNumber).toLocaleString("ru-RU");
       return;
     }
+    updateOverflow();
+
     const buttonText = clickButton.textContent;
-    updateOverflow();
-    interfaceFirst.textContent += buttonText;
-    updateOverflow();
+    if (isNaN(buttonText)) {
+      interfaceFirst.textContent += buttonText;
+    } else {
+      currentNumber += buttonText;
+      interfaceFirst.textContent =
+        Number(currentNumber).toLocaleString("ru-RU");
+      updateOverflow();
+      return;
+    }
 
     if (
       clickButton.classList.contains("division") ||
@@ -52,24 +82,30 @@ buttons.forEach((elem) => {
       clickButton.classList.contains("procent")
     ) {
       if (previousNumber === "") {
-        previousNumber = Number(
-          interfaceFirst.textContent.slice(0, -1).replace(",", ".")
-        );
+        previousNumber = Number(currentNumber.replace(/\s/g, ""));
       }
-
+      console.log(previousNumber);
+      console.log(typeof previousNumber);
       operation = clickButton.textContent;
 
-      interfaceSecond.textContent = `${previousNumber} ${operation}  `;
+      interfaceSecond.textContent = `${previousNumber.toLocaleString(
+        "ru-RU"
+      )} ${operation}  `;
 
       interfaceFirst.textContent = "";
+      currentNumber = "";
 
       return;
     }
 
     if (clickButton.classList.contains("equals")) {
       currentNumber = Number(
-        interfaceFirst.textContent.slice(0, -1).replace(",", ".")
+        interfaceFirst.textContent
+          .slice(0, -1)
+          .replace(/\s/g, "")
+          .replace(",", ".")
       );
+      console.log(typeof currentNumber);
 
       console.log("Операция:", previousNumber, operation, currentNumber);
 
@@ -97,14 +133,20 @@ buttons.forEach((elem) => {
         default:
           result = currentNumber;
       }
-      console.log("Результат:", result);
-      interfaceFirst.textContent = result;
 
-      interfaceHistory.textContent = `${previousNumber} ${operation} ${currentNumber}`;
+      console.log("Результат:", result);
+      interfaceFirst.textContent = result.toLocaleString("ru-RU");
+
+      interfaceHistory.textContent = `${previousNumber.toLocaleString(
+        "ru-RU"
+      )} ${operation} ${currentNumber.toLocaleString("ru-RU")}`;
+      updateNumber();
       interfaceSecond.textContent = "";
       previousNumber = "";
       currentNumber = "";
       operation = "";
     }
+
+    updateOverflow();
   });
 });
