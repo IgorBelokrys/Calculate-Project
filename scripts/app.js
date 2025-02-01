@@ -31,17 +31,20 @@ function updateNumber() {
     let fontSizeHistory = parseFloat(
       window.getComputedStyle(interfaceHistory).fontSize
     );
-    let res = (interfaceFirst.style.fontSize = `${fontSizeFirst * 0.5}px`);
-    let res2 = (interfaceHistory.style.fontSize = `${fontSizeHistory * 0.3}px`);
+    let res = (interfaceFirst.style.fontSize = `${fontSizeFirst * 0.7}px`);
+    let res2 = (interfaceHistory.style.fontSize = `${fontSizeHistory * 0.5}px`);
     console.log(res);
     console.log(res2);
+  } else {
+    return;
   }
 }
+updateNumber();
 
 buttons.forEach((elem) => {
   elem.addEventListener("click", function (event) {
     const clickButton = event.target.closest("button");
-    console.log(`Клик по кнопке:`, clickButton.textContent);
+
     if (clickButton.classList.contains("reset")) {
       interfaceFirst.textContent = "";
       interfaceSecond.textContent = "";
@@ -65,6 +68,9 @@ buttons.forEach((elem) => {
 
     const buttonText = clickButton.textContent;
     if (isNaN(buttonText)) {
+      if (buttonText === ",") {
+        currentNumber += buttonText.replace(",", ".");
+      }
       interfaceFirst.textContent += buttonText;
     } else {
       currentNumber += buttonText;
@@ -84,8 +90,7 @@ buttons.forEach((elem) => {
       if (previousNumber === "") {
         previousNumber = Number(currentNumber.replace(/\s/g, ""));
       }
-      console.log(previousNumber);
-      console.log(typeof previousNumber);
+
       operation = clickButton.textContent;
 
       interfaceSecond.textContent = `${previousNumber.toLocaleString(
@@ -105,7 +110,7 @@ buttons.forEach((elem) => {
           .replace(/\s/g, "")
           .replace(",", ".")
       );
-      console.log(typeof currentNumber);
+      // console.log(typeof currentNumber);
 
       console.log("Операция:", previousNumber, operation, currentNumber);
 
@@ -124,12 +129,8 @@ buttons.forEach((elem) => {
           result = previousNumber + currentNumber;
           break;
         case "%":
-          if (currentNumber === "") {
-            currentNumber = Number(
-              interfaceFirst.textContent.replace(",", ".")
-            );
-          }
-          result = (currentNumber * previousNumber) / 100;
+          result = (currentNumber / previousNumber) * 100;
+          break;
         default:
           result = currentNumber;
       }
@@ -140,6 +141,7 @@ buttons.forEach((elem) => {
       interfaceHistory.textContent = `${previousNumber.toLocaleString(
         "ru-RU"
       )} ${operation} ${currentNumber.toLocaleString("ru-RU")}`;
+
       updateNumber();
       interfaceSecond.textContent = "";
       previousNumber = "";

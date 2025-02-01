@@ -20,10 +20,15 @@ body {
   padding: 20px;
 }
 
-.interface-wrap {
+.interface-wrap,
+.div-wrap {
   display: flex;
   box-sizing: border-box;
   margin-top: 5px;
+}
+
+.div-wrap {
+  justify-content: end;
 }
 
 .div-interface {
@@ -33,6 +38,9 @@ body {
   justify-content: flex-end;
   background-color: none;
   color: #ffffff;
+  overflow-x: auto;
+  white-space: nowrap;
+  scrollbar-width: none;
 }
 
 .interface-first {
