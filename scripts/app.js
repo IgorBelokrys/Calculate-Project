@@ -4,8 +4,9 @@ const interfaceFirst = document.querySelector(".interface-first");
 const interfaceSecond = document.querySelector(".interface-second");
 const interfaceWrap = document.querySelector(".interface-wrap");
 const interfaceHistory = document.querySelector(".interface-history");
+const history = document.querySelector(".history");
 
-const buttons = document.querySelectorAll(".buttons button");
+const buttons = document.querySelectorAll(".calculate button");
 
 let previousNumber = "";
 let currentNumber = "";
@@ -44,6 +45,7 @@ updateNumber();
 buttons.forEach((elem) => {
   elem.addEventListener("click", function (event) {
     const clickButton = event.target.closest("button");
+    console.log(clickButton.className);
 
     if (clickButton.classList.contains("reset")) {
       interfaceFirst.textContent = "";
@@ -67,7 +69,13 @@ buttons.forEach((elem) => {
     updateOverflow();
 
     const buttonText = clickButton.textContent;
-    if (isNaN(buttonText)) {
+    const buttonClass = clickButton.className;
+    if (buttonClass === "visual-history") {
+      history.style.display = "block";
+      return;
+    } else if (buttonClass === "back") {
+      history.style.display = "none";
+    } else if (isNaN(buttonText)) {
       if (buttonText === ",") {
         currentNumber += buttonText.replace(",", ".");
       }
