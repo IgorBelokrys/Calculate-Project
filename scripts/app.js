@@ -71,10 +71,10 @@ buttons.forEach((elem) => {
     const buttonText = clickButton.textContent;
     const buttonClass = clickButton.className;
     if (buttonClass === "visual-history") {
-      history.style.display = "block";
+      history.style.visibility = "visible";
       return;
     } else if (buttonClass === "back") {
-      history.style.display = "none";
+      history.style.visibility = "hidden";
     } else if (isNaN(buttonText)) {
       if (buttonText === ",") {
         currentNumber += buttonText.replace(",", ".");
@@ -151,6 +151,18 @@ buttons.forEach((elem) => {
       )} ${operation} ${currentNumber.toLocaleString("ru-RU")}`;
 
       updateNumber();
+      const historyWrap = document.createElement("div");
+      historyWrap.className = "historyWrap";
+      history.appendChild(historyWrap);
+      const historyOperation = document.createElement("div");
+      historyOperation.className = "historyOperation";
+      historyWrap.appendChild(historyOperation);
+      historyOperation.textContent = interfaceHistory.textContent;
+      const historyResult = document.createElement("div");
+      historyResult.className = "historyResult";
+      historyWrap.appendChild(historyResult);
+      historyResult.textContent = interfaceFirst.textContent;
+
       interfaceSecond.textContent = "";
       previousNumber = "";
       currentNumber = "";

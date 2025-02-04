@@ -11,12 +11,41 @@ body {
 
 .history {
   box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  /* align-items: start; */
+  gap: 10px;
   padding: 40px;
   position: absolute;
   inset: 0;
-  background-color: #72b03c;
+  background-color: #000000;
   z-index: 10000;
-  display: none;
+  visibility: hidden;
+}
+
+.historyWrap {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 12px 3px 3px 3px;
+  border-top: 2px solid #706969;
+}
+
+.historyResult {
+  color: #ffffff;
+}
+
+.historyOperation {
+  color: #c7c2c2;
+}
+
+.back {
+  margin-bottom: 20px;
+  margin-top: 15px;
+  padding: 5px 20px;
+  background-color: #ff9e2e;
+  border: none;
+  color: #ffffff;
 }
 
 .calculate {
@@ -161,8 +190,19 @@ body {
   .div-interface {
     font-size: 35px;
     padding: 6px;
-
     height: 40px;
+  }
+
+  .historyOperation {
+    font-size: 35px;
+  }
+
+  .historyOperation {
+    font-size: 15px;
+  }
+
+  .historyResult {
+    font-size: 20px;
   }
 }
 
@@ -191,6 +231,18 @@ body {
 
     height: 40px;
   }
+
+  .historyOperation {
+    font-size: 35px;
+  }
+
+  .historyOperation {
+    font-size: 18px;
+  }
+
+  .historyResult {
+    font-size: 23px;
+  }
 }
 
 @media (min-width: 500px) {
@@ -215,6 +267,18 @@ body {
   .div-interface {
     font-size: 45px;
     height: 50px;
+  }
+
+  .historyOperation {
+    font-size: 45px;
+  }
+
+  .historyOperation {
+    font-size: 19px;
+  }
+
+  .historyResult {
+    font-size: 24px;
   }
 }
 
@@ -241,6 +305,14 @@ body {
     font-size: 50px;
     height: 50px;
   }
+
+  .historyOperation {
+    font-size: 20px;
+  }
+
+  .historyResult {
+    font-size: 25px;
+  }
 }
 
 @media (min-width: 1000px) {
@@ -266,6 +338,14 @@ body {
     font-size: 55px;
     height: 50px;
   }
+
+  .historyOperation {
+    font-size: 22px;
+  }
+
+  .historyResult {
+    font-size: 27px;
+  }
 }
 
 @media (min-width: 1200px) {
@@ -290,6 +370,14 @@ body {
   .div-interface {
     font-size: 60px;
     height: 50px;
+  }
+
+  .historyOperation {
+    font-size: 25px;
+  }
+
+  .historyResult {
+    font-size: 30px;
   }
 }
 
